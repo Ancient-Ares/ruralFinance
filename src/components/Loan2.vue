@@ -78,7 +78,6 @@
             let conText = data.content
             let conText2 = conText.replace('*', applyMoney)
             this.content = conText2.replace('^', reasonText)
-            console.log(this.content)
             this.commitmentId = data.commitmentId
             this.$vux.loading.hide()
           } else {

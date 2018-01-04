@@ -350,7 +350,6 @@
     padding-bottom: 75px;
     background: #fff;
   }
-
   .drawBox {
     background-color: #fff;
     height: 100%;
