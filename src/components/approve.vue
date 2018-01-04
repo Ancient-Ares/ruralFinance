@@ -140,6 +140,7 @@
       }
     }
   }
+
   .flowText {
     width: 100%;
     .flowitem {
@@ -155,7 +156,7 @@
       span:nth-child(2) {
         flex: 1;
         text-align: right;
-        white-space:nowrap;
+        white-space: nowrap;
         overflow-x: auto;
         color: #999;
         img {
@@ -165,6 +166,7 @@
       }
     }
   }
+
   .btn_wrap {
     position: fixed;
     bottom: 0;

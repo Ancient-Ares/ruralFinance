@@ -19,10 +19,12 @@
           </div>
           <popup-picker class="month" title="借款期限" :data="month" v-model="applyMonth"
                         value-text-align="right" :placeholder="('请选择')"></popup-picker>
-          <popup-picker class="reason" title="借款用途" :data="reason" v-model="applyReason" value-text-align="right" value-font-size="12px" :placeholder="('请选择')"></popup-picker>
+          <popup-picker class="reason" title="借款用途" :data="reason" v-model="applyReason" value-text-align="right"
+                        value-font-size="12px" :placeholder="('请选择')"></popup-picker>
           <div class="placeInput">
             <label for="place">所在位置</label>
-            <input id="place" class="place" type="text" v-model="place" placeholder="请填写地址" ref="place" @focus="focus($event)"></input>
+            <input id="place" class="place" type="text" v-model="place" placeholder="请填写地址" ref="place"
+                   @focus="focus($event)"></input>
           </div>
         </div>
       </div>
@@ -320,14 +322,15 @@
           return false
         }
         let local = window.localStorage
+        let reasonArr = this.reason[0]
+        let applyReasonText = this.applyReason[0]
+        let applyReason
         local.setItem('applyMonth', this.applyMonth[0].substring(0, 1))
         local.setItem('applyMoney', this.applyMoney)
-        let reasonWhy = this.applyReason[0]
-        let applyReason
-        if (reasonWhy === this.reason[0][0]) {
-          applyReason = '1'
-        } else {
-          applyReason = '2'
+        for (let i = 0, lens = reasonArr.length; i < lens; i++) {
+          if (applyReasonText === reasonArr[i]) {
+            applyReason = i + 1
+          }
         }
         local.setItem('applyReason', applyReason)
         this.$router.push('Loan2')

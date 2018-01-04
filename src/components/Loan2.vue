@@ -4,11 +4,8 @@
     <LoanStep :loanStep="loanStep"></LoanStep>
     <div class="commitment">
       <h3>《无抵押贷款承诺函》</h3>
-      <p>甲方: {{name}}</p>
-      <p>甲方身份证: {{idCard}}</p>
-      <p>乙方: 政策性农业贷款担保公司</p>
       <div class="content" :class="{'change':getMoreContent}">
-        <p>{{content}}</p>
+        <div v-html="content"></div>
       </div>
       <div class="more" @click="getMore">
         <icon slot="icon" name="more" scale="2.5"></icon>
@@ -58,6 +55,15 @@
         let local = window.localStorage
         let userId = local.getItem('userId')
         let userName = local.getItem('userName')
+        let applyMoney = local.getItem('applyMoney')
+        let applyReason = parseFloat(local.getItem('applyReason'))
+        let reasonArr = ['生产资料购买', '农资购买贷款', '生产服务需求贷款', '扩大种养规模贷款', '购买农机具贷款', '农田水利建设贷款']
+        let reasonText = ''
+        for (let i = 0, lens = reasonArr.length; i < lens; i++) {
+          if (applyReason === i + 1) {
+            reasonText = reasonArr[i]
+          }
+        }
         this.name = userName
         this.$http({
           method: 'get',
@@ -69,7 +75,10 @@
         }).then((res) => {
           if (res.data.status === 'true') {
             let data = res.data.data
-            this.content = data.content
+            let conText = data.content
+            let conText2 = conText.replace('*', applyMoney)
+            this.content = conText2.replace('^', reasonText)
+            console.log(this.content)
             this.commitmentId = data.commitmentId
             this.$vux.loading.hide()
           } else {
@@ -241,7 +250,7 @@
     }
     .content {
       padding: 5px;
-      height: 100px;
+      height: 75px;
       overflow: hidden;
       transition: all ease-out 500ms;
       p {
