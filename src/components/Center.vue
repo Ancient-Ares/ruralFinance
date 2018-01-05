@@ -33,7 +33,7 @@
               <icon slot="icon" name="bill" scale="2"></icon>
               <span>贷款</span>
             </a>
-            <a href="javascript:;">
+            <a @click="nextRouter('Repayment')" href="javascript:;">
               <icon slot="icon" name="repay" scale="2"></icon>
               <span>还款</span>
             </a>
