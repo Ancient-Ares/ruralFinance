@@ -265,6 +265,11 @@ const routes = [
     path: '/CheckList5',
     name: 'CheckList5',
     component: resolve => require(['./components/CheckList5.vue'], resolve)
+  },
+  {
+    path: '/Repayment',
+    name: 'Repayment',
+    component: resolve => require(['./components/Repayment.vue'], resolve)
   }
 ]
 
